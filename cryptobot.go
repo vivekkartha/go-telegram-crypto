@@ -5,12 +5,12 @@ import (
 	"log"
 	tb "gopkg.in/tucnak/telebot.v2"
 
-	conf "github.com/vivekkartha/cryptobot/config"
+	"github.com/vivekkartha/cryptobot/config"
 )
 
 func main() {
 	b, err := tb.NewBot(tb.Settings{
-		Token:  conf.TelegramToken,
+		Token:  config.TelegramToken,
 		Poller: &tb.LongPoller{Timeout: 10 * time.Second},
 	})
 
