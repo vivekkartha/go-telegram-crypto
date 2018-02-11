@@ -3,5 +3,5 @@ Golang based crypto tracker bot for Binance.
 
 #### Dependencies
 ```sh
-go get gopkg.in/tucnak/telebot.v2
+go get -u gopkg.in/tucnak/telebot.v2
 ```
