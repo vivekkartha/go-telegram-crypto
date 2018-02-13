@@ -4,7 +4,7 @@ import (
 	"time"
 	"log"
 
-	conf "github.com/vivekkartha/cryptobot/config"
+	conf "./config"
 	tb "gopkg.in/tucnak/telebot.v2"
 
 	"github.com/vivekkartha/go-binance/binance"
