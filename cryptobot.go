@@ -19,9 +19,24 @@ func main() {
 		fmt.Println(err)
 	}
 
-	for _,v := range res{
-		fmt.Println(v.Symbol,"Qty:",v.OrigQty,"| Price:",v.Price, "| Type:",v.Type,v.Side)
+	fmt.Println("All open orders")
+	for _, v := range res {
+		fmt.Println(v.Symbol, "Qty:", v.OrigQty, "| Price:", v.Price, "| Type:", v.Type, v.Side)
 	}
+
+	symbol := "QSPBTC"
+	fmt.Printf("Trade history - %s\n", symbol)
+	trades, err := client.GetTrades("QSPBTC")
+	for _, t := range trades {
+		side := "SELL"
+		if t.IsBuyer {
+			side = "BUY"
+		}
+		totalPrice := t.Price * t.Quantity
+		fmt.Printf("%s Rate:%f  Qty:%d  Tot:%f\n Commission:%f(%s) %s\n",
+			symbol, t.Price, uint64(t.Quantity), totalPrice, t.Commission, t.CommissionAsset, side)
+	}
+
 	b, err := tb.NewBot(tb.Settings{
 		Token:  conf.TelegramToken,
 		Poller: &tb.LongPoller{Timeout: 10 * time.Second},
@@ -40,7 +55,7 @@ func main() {
 	b.Handle("/start", func(m *tb.Message) {
 		recipient = m.Sender
 		fmt.Println("Command")
-		b.Send(m.Sender,"Hey!")
+		b.Send(m.Sender, "Hey!")
 		log.Println(m.Text)
 	})
 
