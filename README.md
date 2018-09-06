@@ -1,3 +1,4 @@
+### Project not maintained the moment
 This is an experimental project to learn GoLang and the Telegram bot API.
 
 # Binance TelegramBot (GoLang) - WIP
